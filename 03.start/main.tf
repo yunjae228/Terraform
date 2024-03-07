@@ -7,7 +7,7 @@ variable "sensitive_content" {
 
 resource "local_file" "foo" {
   # upper 는 내장함수
-  content = upper(var.sensitive_content)
+  content  = upper(var.sensitive_content)
   filename = "${path.module}/foo.bar"
 
   # 로컬 리소스 프로비저너
@@ -16,12 +16,12 @@ resource "local_file" "foo" {
   }
 
   provisioner "local-exec" {
-    command = "abc"
+    command    = "abc"
     on_failure = continue
   }
 
   provisioner "local-exec" {
-    when = destroy
+    when    = destroy
     command = "echo The deleting filename is ${self.filename}"
   }
 }
